@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visa Requirements - Nexus Educational Consultancy</title>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- Google Fonts for better typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- =================================================== -->
+    <!--           EMBEDDED CSS STYLES                     -->
+    <!-- =================================================== -->
+    <style>
+        /* General Body & Typography */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* --- CHANGE HIGHLIGHTED: Background Video Styling --- */
+        #bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover; /* Ensures video covers the screen without distortion */
+            z-index: -1;      /* Places the video behind all other content */
+        }
+        /* --- END OF CHANGE --- */
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Section */
+        .header {
+            background-color: #ffffff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 120px; /* Adjusted from 140px for a sleeker look */
+            width: auto;
+        }
+
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            padding: 30px 0;
+            position: relative;
+        }
+
+        .nav-link::after, .active-nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #1a237e;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after, .active-nav-link::after {
+            width: 100%;
+        }
+
+        .active-nav-link {
+            color: #1a237e;
+            font-weight: 700;
+        }
+        
+        .hamburger { display: none; }
+        .bar { display: block; width: 28px; height: 3px; margin: 6px auto; background-color: #333; transition: all 0.4s ease-in-out; }
+        
+        /* Optional: Header contact info styling */
+        .header-contact-info { display: none; /* Hidden for this example, enable if needed */ }
+
+        /* Main Content Styling */
+        .content-section {
+            padding: 80px 0;
+            /* --- CHANGE HIGHLIGHTED: Make the background semi-transparent for readability --- */
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            margin: 40px auto; /* Gives some space from the top/bottom */
+            max-width: 1200px; /* Aligns with container */
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .visa-page-title {
+            text-align: center;
+            font-size: 2.8rem;
+            color: #1a237e;
+            margin-bottom: 40px;
+        }
+
+        .visa-requirements-list {
+            list-style-type: decimal;
+            margin: 0 auto 50px auto;
+            max-width: 800px;
+            padding-left: 20px;
+            font-size: 1.1rem;
+        }
+
+        .visa-requirements-list li {
+            margin-bottom: 20px;
+            padding-left: 10px;
+        }
+
+        /* Country Grid Styling */
+        .country-grid-visa {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .country-grid-visa-single {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .country-item-visa {
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .country-item-visa a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .country-item-visa img {
+            width: 100%;
+            max-width: 150px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 15px;
+        }
+        
+        .country-item-visa h3 {
+            color: #333;
+            font-size: 1.2rem;
+        }
+
+        .country-item-visa:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Footer Styles */
+        .site-footer {
+            background-color: #1c2331;
+            color: #fff;
+            padding: 60px 0 20px;
+        }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; margin-bottom: 40px; }
+        .footer-column h4 { color: #fff; border-bottom: 2px solid #3d84b8; padding-bottom: 10px; }
+        .footer-column p { color: #ccc; display: flex; align-items: center; }
+        .footer-column p i { margin-right: 10px; }
+        .footer-social-bar { text-align: center; padding: 20px 0; border-top: 1px solid #333; margin: 20px 0; }
+        .footer-social-bar a { color: #fff; font-size: 1.5rem; margin: 0 15px; }
+        .footer-bottom { text-align: center; font-size: 0.9rem; }
+        
+        /* --- UPDATED RESPONSIVE STYLES --- */
+        @media (max-width: 991px) {
+            .navbar .logo:nth-of-type(2) { display: none; }
+            .nav-menu {
+                display: none;
+                position: absolute;
+                left: 0;
+                top: 140px; /* Adjusted to header height */
+                width: 100%;
+                flex-direction: column;
+                background-color: #fff;
+                box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+                padding: 10px 0;
+                gap: 0;
+            }
+            .nav-menu.active { display: flex; }
+            .nav-menu li { width: 100%; }
+            .nav-menu .nav-link {
+                display: block;
+                padding: 18px;
+                text-align: center;
+                border-bottom: 1px solid #e5e7eb;
+            }
+             .nav-menu li:last-child a { border-bottom: none; }
+            .nav-menu .nav-link:hover, .nav-menu .nav-link.active-nav-link { background-color: #f7f9fc; }
+            .nav-menu .nav-link::after { display: none; }
+
+            .hamburger { display: block; cursor: pointer; }
+            .hamburger.active .bar:nth-child(2) { opacity: 0; }
+            .hamburger.active .bar:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+            .hamburger.active .bar:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- =================================================== -->
+    <!--     CHANGE HIGHLIGHTED: BACKGROUND VIDEO ADDED      -->
+    <!-- =================================================== -->
+    <video id="bg-video" autoplay loop muted playsinline>
+        <!-- IMPORTANT: Replace this with the actual path to YOUR video file -->
+        <source src="images\visa and immigration background.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+
+    <!-- =================================================== -->
+    <!-- HEADER SECTION                                    -->
+    <!-- =================================================== -->
+    <header class="header">
+        <nav class="navbar container">
+            <a href="index.html" class="logo">
+                <img src="images/uk nexus logo.png" alt="Nexus UK Logo">
+            </a>
+
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="ourservices.html" class="nav-link">Services</a></li>
+                <li><a href="about us.html" class="nav-link">About Us</a></li>
+                <li><a href="contact us.html" class="nav-link">Contact</a></li>
+                <li><a href="visa & immigration.html" class="nav-link active-nav-link">Visa and Immigration</a></li>
+            </ul>
+
+            <a href="index.html" class="logo">
+                <img src="images/nepal nexus.png" alt="Nexus Nepal Logo">
+            </a>
+
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <section class="content-section">
+            <div class="container">
+
+                <h1 class="visa-page-title">Requirement for Visa Application</h1>
+
+                <ol class="visa-requirements-list">
+                    <li><strong>Visa Application Form:</strong> Complete the appropriate visa application form for your chosen country.</li>
+                    <li><strong>Valid Passport:</strong> A current passport with at least six months validity beyond your intended stay.</li>
+                    <li><strong>Passport-Sized Photographs:</strong> Recent photographs that meet the specific requirements of the country.</li>
+                    <li><strong>Proof of Financial Capacity:</strong> Evidence of sufficient funds to cover tuition fees and living expenses.</li>
+                    <li><strong>Proof of Accommodation:</strong> Details about where you will be staying during your visit.</li>
+                    <li><strong>Health and Character Checks:</strong> You may need to undergo a health examination and provide police clearance certificates.</li>
+                    <li><strong>Visa Application Fee:</strong> Payment for the visa application, which varies by country and visa type.</li>
+                </ol>
+
+                <div class="country-grid-visa">
+                    <div class="country-item-visa">
+                        <a href="https://www.homeaffairs.gov.au/" target="_blank" rel="noopener noreferrer">
+                            <img src="images\australia.png" alt="Map of Australia with flag">
+                            <h3>Australia</h3>
+                        </a>
+                    </div>
+                    <div class="country-item-visa">
+                        <a href="https://www.gov.uk/government/organisations/uk-visas-and-immigration" target="_blank" rel="noopener noreferrer">
+                            <img src="images\england.png" alt="Map of United Kingdom">
+                            <h3>United Kingdom</h3>
+                        </a>
+                    </div>
+                    <div class="country-item-visa">
+                        <a href="https://www.uscis.gov/" target="_blank" rel="noopener noreferrer">
+                            <img src="images\USA.png" alt="Map of USA with flag">
+                            <h3>United States</h3>
+                        </a>
+                    </div>
+                    <div class="country-item-visa">
+                        <a href="https://www.canada.ca/en.html" target="_blank" rel="noopener noreferrer">
+                            <img src="images\canada.png" alt="Map of Canada with flag">
+                            <h3>Canada</h3>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="country-grid-visa-single">
+                    <div class="country-item-visa">
+                        <a href="https://www.mofa.go.jp/j_info/visit/visa/index.html" target="_blank" rel="noopener noreferrer">
+                            <img src="images\japan.png" alt="Map of Japan with flag">
+                            <h3>Japan</h3>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+ <footer class="site-footer" id="footer">
+        <div class="container footer-grid">
+            <div class="footer-column">
+                <h4>UK Nexus Educational Consultancy</h4>
+                <p><i class="fa-solid fa-user"></i> Mr. Ajay Singha (Director)</p>
+                <p><i class="fa-solid fa-phone"></i> +44-791-220-8517</p>
+                <p><i class="fa-solid fa-envelope"></i> uk@nexuseducationalcnsultancy.com
+            </div>
+            <div class="footer-column">
+                <h4>Nepal, Nexus Educational Consultancy</h4>
+                <p><i class="fa-solid fa-location-dot"></i> Bijuli Bazar, New Baneshwor</p>
+                <p><i class="fa-solid fa-user"></i> Ms. Sabina Karmacharya</p>
+                <p><i class="fa-solid fa-phone"></i> +977-9851191884</p>
+                <p><i class="fa-solid fa-envelope"></i> nepal@nexuseducationalconsulatancy.com
+            </div>
+            <div class="footer-column">
+                <h4>Australia, Nexus Educational Consultancy</h4>
+                <p><i class="fa-solid fa-user"></i> Mr. Suresh shrestha</p>
+                <p><i class="fa-solid fa-phone"></i> +61-434060032</p>
+                <p><i class="fa-solid fa-envelope"></i> aus@nexuseducationalconsultancy.com
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT FOR HAMBURGER MENU -->
+    <script>
+        const hamburger = document.querySelector(".hamburger");
+        const navMenu = document.querySelector(".nav-menu");
+
+        hamburger.addEventListener("click", () => {
+            hamburger.classList.toggle("active");
+            navMenu.classList.toggle("active");
+        });
+
+        document.querySelectorAll(".nav-link").forEach(link => {
+            link.addEventListener("click", () => {
+                hamburger.classList.remove("active");
+                navMenu.classList.remove("active");
+            });
+        });
+    </script>
+
+</body>
+</html>

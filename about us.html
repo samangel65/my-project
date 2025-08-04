@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Nexus Educational Consultancy</title>
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Our Perfected CSS Template -->
+    <style>
+        /* --- Base & Typography --- */
+        :root {
+            --primary-color: #1a237e;
+            --secondary-color: #e53935;
+            --light-bg: #f7f9fc;
+            --dark-text: #333;
+            --body-text: #4b5563;
+            --white: #fff;
+            --border-light: #e5e7eb;
+            --shadow-light: rgba(0,0,0,0.05);
+            --shadow-dark: rgba(0,0,0,0.1);
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background-color: var(--white);
+            color: var(--dark-text);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--primary-color);
+        }
+        h1 { font-size: clamp(2.5rem, 5vw, 3rem); line-height: 1.2; }
+        h2 { font-size: clamp(2rem, 4vw, 2.5rem); text-align: center; margin-bottom: 50px; }
+        p { line-height: 1.8; color: var(--body-text); }
+        a { text-decoration: none; color: inherit; }
+
+        /* --- Header & Navigation --- */
+        .header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px var(--shadow-dark);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 90px;
+        }
+        .logo img {
+            height: 70px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 35px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-menu a {
+            font-weight: 500;
+            font-size: 16px;
+            color: var(--dark-text);
+            position: relative;
+            padding: 5px 0;
+        }
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease-in-out;
+        }
+        .nav-menu a:hover::after,
+        .nav-menu a.active-nav-link::after {
+            width: 100%;
+        }
+        .nav-menu a.active-nav-link {
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+        .hamburger { display: none; cursor: pointer; }
+        .bar { display: block; width: 28px; height: 3px; margin: 6px auto; background-color: var(--dark-text); transition: all 0.4s ease-in-out; }
+
+        /* Mobile Styles */
+        @media (max-width: 991px) {
+            .navbar .logo:nth-of-type(2) { display: none; }
+            .nav-menu {
+                display: none;
+                position: absolute;
+                left: 0;
+                top: 90px;
+                width: 100%;
+                flex-direction: column;
+                background-color: var(--white);
+                box-shadow: 0 8px 16px var(--shadow-dark);
+                padding: 10px 0;
+                gap: 0;
+            }
+            .nav-menu.active { display: flex; }
+            .nav-menu li { width: 100%; }
+            .nav-menu a {
+                display: block;
+                padding: 18px;
+                text-align: center;
+                border-bottom: 1px solid var(--border-light);
+            }
+            .nav-menu li:last-child a { border-bottom: none; }
+            .nav-menu a:hover, .nav-menu a.active-nav-link { background-color: var(--light-bg); }
+            .nav-menu a::after { display: none; } /* Hide underline on mobile dropdown */
+            .hamburger { display: block; }
+            .hamburger.active .bar:nth-child(2) { opacity: 0; }
+            .hamburger.active .bar:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+            .hamburger.active .bar:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+        }
+
+        /* --- Content Sections --- */
+        .content-section {
+            padding: 80px 0;
+        }
+        .about-intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+        .about-intro-text .sub-heading {
+            font-weight: 600;
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+            display: block;
+        }
+        .about-intro-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px var(--shadow-dark);
+        }
+        .about-features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            text-align: center;
+        }
+        .feature-button {
+            background-color: var(--white);
+            padding: 25px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            color: var(--primary-color);
+            transition: all 0.3s ease;
+            border: 1px solid var(--border-light);
+            box-shadow: 0 4px 6px var(--shadow-light);
+        }
+        .feature-button:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(26, 35, 126, 0.15);
+        }
+        .feature-button i { margin-right: 12px; font-size: 1.2rem; }
+
+        /* --- Team Section --- */
+        .team-section-bg { background-color: var(--light-bg); }
+        .team-grid-senior {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        .team-member-senior {
+            display: flex;
+            gap: 30px;
+            background: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px var(--shadow-light);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .team-member-senior:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px var(--shadow-dark);
+        }
+        .team-photo-wrapper img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--white);
+            box-shadow: 0 5px 15px var(--shadow-dark);
+        }
+        .team-info h3 { margin-top: 0; font-size: 1.5rem; }
+        .team-info .title { font-weight: 600; color: var(--secondary-color); margin-top: -10px; margin-bottom: 15px; }
+        .contact-info { color: var(--body-text); margin-bottom: 8px; display: flex; align-items: center; }
+        .contact-info i { margin-right: 10px; width: 20px; text-align: center; color: var(--primary-color); }
+        .words-from { margin-top: 20px; background: var(--light-bg); padding: 20px; border-radius: 8px; border-left: 4px solid var(--primary-color); }
+        .words-from h4 { margin-top: 0; font-size: 1rem; color: var(--dark-text); }
+        .words-from blockquote { margin: 0; font-style: italic; color: var(--body-text); }
+        .words-from .fa-quote-left { color: var(--primary-color); margin-right: 8px; }
+
+        .team-grid-main {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        .team-member-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 20px var(--shadow-light);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .team-member-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px var(--shadow-dark);
+        }
+        .team-member-card img { width: 150px; height: 150px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; border: 4px solid var(--light-bg); }
+        .team-member-card h3 { font-size: 1.4rem; }
+        .team-member-card h4 { font-size: 1rem; font-weight: 500; color: var(--secondary-color); margin-top: -10px; }
+        .team-member-card p { color: var(--body-text); }
+        .team-member-card .contact-info { justify-content: center; }
+        .team-member-card i { color: var(--primary-color); }
+
+        /* Responsive Adjustments */
+        @media (max-width: 991px) {
+            .about-intro-grid { grid-template-columns: 1fr; text-align: center; }
+            .about-intro-image { order: -1; margin-bottom: 30px; }
+            .team-grid-senior { grid-template-columns: 1fr; }
+            .team-member-senior { flex-direction: column; align-items: center; text-align: center; }
+        }
+
+        /* --- Footer --- */
+        .site-footer {
+            background-color: #1c2331;
+            color: var(--white);
+            padding: 60px 0 20px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        .footer-column h4 {
+            color: var(--white);
+            border-bottom: 2px solid #3d84b8;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .footer-column p, .footer-column a {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            color: #ccc;
+            transition: color 0.3s ease;
+        }
+        .footer-column a:hover {
+            color: var(--white);
+        }
+        .footer-column i {
+            margin-right: 12px;
+            margin-top: 5px;
+            width: 20px;
+            text-align: center;
+            color: #3d84b8;
+        }
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #3a4558;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+
+        @media (max-width: 768px) {
+            .footer-grid { text-align: center; }
+            .footer-column p, .footer-column a { justify-content: center; text-align: left; }
+        }
+    </style>
+</head>
+<body>
+
+    
+<header class="header" style="height: 140px;">
+      <nav class="navbar container" style="height: 140px;">
+            <a href="index.html" class="logo"><img src="images/uk nexus logo.png" alt="Nexus UK Logo" style="height: 120px;"></a>
+            <ul class="nav-menu">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="ourservices.html">Services</a></li>
+              <li><a href="about us.html"class = "active-nav-link">About Us</a></li>
+              <li><a href="contact us.html">Contact</a></li>
+              <li><a href="visa & immigration.html">Visa & Immigration</a></li>
+            </ul>
+            <a href="index.html" class="logo"><img src="images/nepal nexus.png" alt="Nexus Nepal Logo" style="height: 120px;"></a>
+            <div class="hamburger">
+                 <span class="bar"></span>
+                 <span class="bar"></span>
+                 <span class="bar"></span>
+            </div>
+      </nav>
+ </header>
+    <main>
+        <!-- ABOUT US INTRO SECTION -->
+        <section class="content-section">
+            <div class="container">
+                <div class="about-intro-grid">
+                    <div class="about-intro-text">
+                        <span class="sub-heading">Your Trusted Partner in Global Education</span>
+                        <h1>Nexus Educational Consultancy</h1>
+                        <p>With over a decade of experience, we provide expert counseling for students aiming to pursue higher education abroad. Our offices in the UK, Nepal, and Australia ensure we are accessible to students across various regions, ready to guide you on your journey to success.</p>
+                    </div>
+                    <div class="about-intro-image">
+                        <img src="images/about us.png" alt="Students collaborating in a modern setting">
+                    </div>
+                </div>
+                <div class="about-features-grid">
+                    <a href="#" class="feature-button"><i class="fas fa-user-tie"></i>Personalised Consultancy</a>
+                    <a href="#" class="feature-button"><i class="fas fa-headset"></i>Comprehensive Support</a>
+                    <a href="#" class="feature-button"><i class="fas fa-briefcase"></i>Experienced Advisors</a>
+                    <a href="#" class="feature-button"><i class="fas fa-check-circle"></i>Proven Success</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- OUR TEAM SECTION -->
+        <section class="content-section team-section-bg">
+            <div class="container">
+                <h2 class="section-title">Meet Our Leadership</h2>
+
+                <div class="team-grid-senior">
+                    <!-- Chairperson -->
+                    <div class="team-member-senior">
+                        <div class="team-photo-wrapper"><img src="images/ajay.jpg" alt="Mr. Ajay Singha"></div>
+                        <div class="team-info">
+                            <h3>Mr. Ajay Singha</h3>
+                            <p class="title">Chairperson</p>
+                            <p class="contact-info"><i class="fas fa-phone"></i>+44 - 791 220 8517</p>
+                            <div class="words-from">
+                                <h4>A Message from the Chairperson</h4>
+                                <blockquote>
+                                    <i class="fas fa-quote-left"></i>
+                                    With over 25 years of experience, our commitment is to provide unparalleled guidance for your educational aspirations.
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Managing Director -->
+                    <div class="team-member-senior">
+                        <div class="team-photo-wrapper"><img src="images/bobby.jpg" alt="Mrs. Sabina Karmacharya Singha"></div>
+                        <div class="team-info">
+                            <h3>Mrs. Sabina Karmacharya Singha</h3>
+                            <p class="title">Managing Director</p>
+                            <p class="contact-info"><i class="fas fa-envelope"></i>nepal@nexuseducational.com</p>
+                            <p class="contact-info"><i class="fas fa-phone"></i>+977-985 119 1884</p>
+                            <div class="words-from">
+                                <h4>A Message from the Managing Director</h4>
+                                <blockquote>
+                                    <i class="fas fa-quote-left"></i>
+                                    Leveraging 20+ years in the UK, we bridge the gap between your potential and global opportunities.
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 class="section-title" style="margin-top: 80px;">Our Global Team</h2>
+                <div class="team-grid-main">
+                    <!-- Director Australia -->
+                    <div class="team-member-card">
+                        <img src="images/suresh.JPG" alt="Mr. Suresh Shrestha">
+                        <h3>Mr. Suresh Shrestha</h3>
+                        <h4>Director (Australia)</h4>
+                        <p class="contact-info"><i class="fas fa-envelope"></i>aus@nexuseducational.com</p>
+                        <p class="contact-info"><i class="fas fa-phone"></i>+61-434 060 032</p>
+                    </div>
+                    <!-- Marketing Rep -->
+                    <div class="team-member-card">
+                        <img src="images/ashu.jpg" alt="Miss. Ashvika Singha">
+                        <h3>Miss. Ashvika Singha</h3>
+                        <h4>Marketing Representative</h4>
+                        <p class="contact-info"><i class="fas fa-phone"></i>+44-749 180 1109</p>
+                    </div>
+                    <!-- Trainee -->
+                    <div class="team-member-card">
+                        <img src="images/aastha.jpg" alt="Miss. Aastha Neupane">
+                        <h3>Miss. Aastha Neupane</h3>
+                        <h4>Trainee</h4>
+                        <p>Dedicated to your success and guiding you every step of the way.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+     <footer class="site-footer" id="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h4>United Kingdom</h4>
+                    <p><i class="fa-solid fa-user"></i>Mr. Ajay Singha (Director)</p>
+                    <a href="tel:+447912208517"><i class="fa-solid fa-phone"></i>+44-791-220-8517</a>
+                    <a href="mailto:uk@nexuseducationalconsultancy.com"><i class="fa-solid fa-envelope"></i>uk@nexuseducationalconsultancy.com</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Nepal</h4>
+                    <p><i class="fa-solid fa-location-dot"></i>Bijuli Bazar, New Baneshwor</p>
+                    <p><i class="fa-solid fa-user"></i>Ms. Sabina Karmacharya</p>
+                    <a href="tel:+9779851191884"><i class="fa-solid fa-phone"></i>+977-9851191884</a>
+                    <a href="mailto:nepal@nexuseducationalconsultancy.com"><i class="fa-solid fa-envelope"></i>nepal@nexuseducationalconsultancy.com</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Australia</h4>
+                    <p><i class="fa-solid fa-user"></i>Mr. Suresh Shrestha</p>
+                    <a href="tel:+61434060032"><i class="fa-solid fa-phone"></i>+61-434060032</a>
+                    <a href="mailto:aus@nexuseducationalconsultancy.com"><i class="fa-solid fa-envelope"></i>aus@nexuseducationalconsultancy.com</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 Nexus Educational Consultancy. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+   <!-- JAVASCRIPT FOR HAMBURGER MENU -->
+   <script>
+        const hamburger = document.querySelector(".hamburger");
+        const navMenu = document.querySelector(".nav-menu");
+        hamburger.addEventListener("click", () => {
+            hamburger.classList.toggle("active");
+            navMenu.classList.toggle("active");
+        });
+        document.querySelectorAll(".nav-menu a").forEach(link => {
+            link.addEventListener("click", () => {
+                // Optional: close menu on link click, useful for single-page apps
+                // hamburger.classList.remove("active");
+                // navMenu.classList.remove("active");
+            });
+        });
+    </script>
+
+</body>
+</html>

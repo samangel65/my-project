@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Nexus Educational Consultancy</title>
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts for better typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- Base & Typography --- */
+        :root {
+            --primary-color: #1a237e;
+            --secondary-color: #e53935;
+            --light-bg: #f7f9fc;
+            --dark-text: #2c3e50;
+            --body-text: #4b5563;
+            --white: #fff;
+            --border-light: #e5e7eb;
+            --shadow-light: rgba(0,0,0,0.05);
+            --shadow-dark: rgba(0,0,0,0.1);
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--primary-color);
+        }
+        
+        /* --- Header & Navigation (Standardized) --- */
+        .header {
+            background-color: var(--white);
+            box-shadow: 0 2px 10px var(--shadow-dark);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 90px;
+        }
+        .logo img {
+            height: 70px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+        .logo img:hover {
+            transform: scale(1.05);
+        }
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 35px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 500;
+            font-size: 16px;
+            position: relative;
+            padding: 5px 0;
+        }
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease-in-out;
+        }
+        .nav-menu a:hover::after,
+        .nav-menu a.active-nav-link::after {
+            width: 100%;
+        }
+        .nav-menu a.active-nav-link {
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+        .hamburger { display: none; cursor: pointer; }
+        .bar { display: block; width: 28px; height: 3px; margin: 6px auto; background-color: var(--dark-text); transition: all 0.4s ease-in-out; }
+
+        /* Hero Section */
+        .contact-hero-section {
+            height: 60vh;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        #bg-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1;
+            object-fit: cover;
+        }
+        .contact-hero-overlay {
+            background-color: rgba(26, 35, 126, 0.4); /* Overlay for better text legibility */
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .contact-hero-overlay h1 {
+            color: var(--white);
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            text-align: center;
+            font-weight: 700;
+            padding: 0 20px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Main Content Section */
+        .content-section {
+            padding: 80px 0;
+        }
+        .contact-grid-dynamic {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 50px;
+            align-items: flex-start;
+        }
+        
+        /* Contact Form Card */
+        .contact-form-card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.07);
+        }
+        .contact-form-card h2 {
+            margin-top: 0;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .form-group-float {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        .form-group-float input,
+        .form-group-float textarea {
+            width: 100%;
+            padding: 15px 0;
+            border: none;
+            border-bottom: 2px solid var(--border-light);
+            background: transparent;
+            font-size: 1rem;
+            color: var(--dark-text);
+            transition: border-color 0.3s;
+            box-sizing: border-box;
+        }
+        .form-group-float label {
+            position: absolute;
+            top: 15px;
+            left: 0;
+            color: var(--body-text);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+        .form-group-float input:focus,
+        .form-group-float textarea:focus,
+        .form-group-float input:not(:placeholder-shown),
+        .form-group-float textarea:not(:placeholder-shown) {
+            border-bottom-color: var(--primary-color);
+            outline: none;
+        }
+        .form-group-float input:focus + label,
+        .form-group-float textarea:focus + label,
+        .form-group-float input:not(:placeholder-shown) + label,
+        .form-group-float textarea:not(:placeholder-shown) + label {
+            top: -20px;
+            font-size: 0.8rem;
+            color: var(--primary-color);
+        }
+        textarea { resize: vertical; }
+
+        .btn-send-dynamic {
+            background-color: var(--primary-color);
+            color: #fff;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+            display: block;
+            margin: 20px auto 0;
+        }
+        .btn-send-dynamic:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+        
+        /* Contact Details Wrapper */
+        .contact-details-wrapper {
+            animation-fill-mode: backwards;
+        }
+        .contact-info-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.07);
+            margin-bottom: 30px;
+        }
+        .contact-info-card h3 {
+            margin-top: 0;
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--light-bg);
+            padding-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .contact-info-card h3 i {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            width: 30px;
+            text-align: center;
+            color: var(--primary-color);
+        }
+        .location-detail { margin-bottom: 20px; }
+        .location-detail:last-child { margin-bottom: 0; }
+        .location-detail h4 {
+            margin: 0 0 5px 0;
+            font-size: 1.1rem;
+            color: var(--dark-text);
+        }
+        .location-detail p, .location-detail a {
+            margin: 0;
+            color: var(--body-text);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .location-detail a:hover {
+            color: var(--primary-color);
+        }
+        .location-detail p strong { color: var(--dark-text); }
+
+        /* Footer */
+        .site-footer {
+            background-color: #1c2331;
+            color: var(--white);
+            padding: 60px 0 20px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        .footer-column h4 {
+            color: var(--white);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .footer-column p, .footer-column a {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            color: #ccc;
+            transition: color 0.3s ease;
+            text-decoration: none;
+        }
+        .footer-column a:hover { color: var(--white); }
+        .footer-column i {
+            margin-right: 12px;
+            margin-top: 5px;
+            width: 20px;
+            text-align: center;
+            color: var(--secondary-color);
+        }
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #3a4558;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+        
+        /* --- Responsive Styles (Standardized) --- */
+        @media (max-width: 991px) {
+            .navbar .logo:nth-of-type(2) { display: none; }
+            .nav-menu {
+                display: none;
+                position: absolute;
+                left: 0;
+                top: 90px;
+                width: 100%;
+                flex-direction: column;
+                background-color: var(--white);
+                box-shadow: 0 8px 16px var(--shadow-dark);
+                padding: 10px 0;
+                gap: 0;
+            }
+            .nav-menu.active { display: flex; }
+            .nav-menu li { width: 100%; }
+            .nav-menu a {
+                display: block;
+                padding: 18px;
+                text-align: center;
+                border-bottom: 1px solid var(--border-light);
+            }
+            .nav-menu li:last-child a { border-bottom: none; }
+            .nav-menu a:hover, .nav-menu a.active-nav-link { background-color: var(--light-bg); }
+            .nav-menu a::after { display: none; }
+            .hamburger { display: block; }
+            .hamburger.active .bar:nth-child(2) { opacity: 0; }
+            .hamburger.active .bar:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+            .hamburger.active .bar:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+            
+            .contact-grid-dynamic { grid-template-columns: 1fr; }
+            .contact-details-wrapper { margin-top: 40px; }
+            
+            .footer-grid { text-align: center; }
+            .footer-column p, .footer-column a { justify-content: center; text-align: left; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="header" style="height: 140px;">
+      <nav class="navbar container" style="height: 140px;">
+            <a href="index.html" class="logo"><img src="images/uk nexus logo.png" alt="Nexus UK Logo" style="height: 120px;"></a>
+            <ul class="nav-menu">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="ourservices.html">Services</a></li>
+              <li><a href="about us.html">About Us</a></li>
+              <li><a href="contact us.html" class ="active-nav-link">Contact</a></li>
+              <li><a href="visa & immigration.html">Visa & Immigration</a></li>
+            </ul>
+            <a href="index.html" class="logo"><img src="images/nepal nexus.png" alt="Nexus Nepal Logo" style="height: 120px;"></a>
+            <div class="hamburger">
+                 <span class="bar"></span>
+                 <span class="bar"></span>
+                 <span class="bar"></span>
+            </div>
+      </nav>
+ </header>
+
+    <main>
+        <section class="contact-hero-section">
+            <video id="bg-video" autoplay loop muted playsinline>
+                <source src="images/contact.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            <div class="contact-hero-overlay">
+                <h1>CONTACT US</h1>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <div class="container">
+                <div class="contact-grid-dynamic">
+                    
+                    <div class="contact-form-card">
+                        <h2>Send us a Message</h2>
+                        <form id="contact-form">
+                            <div class="form-group-float">
+                                <input type="text" id="first-name" name="first-name" placeholder=" " required>
+                                <label for="first-name">First Name *</label>
+                            </div>
+                            <div class="form-group-float">
+                                <input type="text" id="last-name" name="last-name" placeholder=" " required>
+                                <label for="last-name">Last Name *</label>
+                            </div>
+                            <div class="form-group-float">
+                                <input type="email" id="email" name="email" placeholder=" " required>
+                                <label for="email">Email *</label>
+                            </div>
+                            <div class="form-group-float">
+                                <input type="text" id="subject" name="subject" placeholder=" " required>
+                                <label for="subject">Subject *</label>
+                            </div>
+                            <div class="form-group-float">
+                                <textarea id="message" name="message" rows="4" placeholder=" " required></textarea>
+                                <label for="message">Message *</label>
+                            </div>
+                            <button type="submit" class="btn-send-dynamic">Send Message</button>
+                        </form>
+                    </div>
+
+                    <div class="contact-details-wrapper">
+                        <div class="contact-info-card">
+                            <h3><i class="fas fa-map-marker-alt"></i> Our Locations</h3>
+                            <div class="location-detail">
+                                <h4>UNITED KINGDOM</h4>
+                                <p>5 Courtfield Grove, Fishpond, Bristol, BS16 2DS</p>
+                            </div>
+                            <div class="location-detail">
+                                <h4>NEPAL</h4>
+                                <p>Ward-10, New Baneshwor, Bijuli Bazaar, Kathmandu</p>
+                            </div>
+                            <div class="location-detail">
+                                <h4>AUSTRALIA</h4>
+                                <p>16 Pinkwood Street, Palmview, QLD, 4553</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-info-card">
+                           <h3><i class="fas fa-phone-alt"></i> Call & Email Us</h3>
+                            <div class="location-detail">
+                                <h4>UNITED KINGDOM</h4>
+                                <p><strong>Tel:</strong> <a href="tel:+447912208517">+44-7912208517</a><br><strong>Email:</strong> <a href="mailto:uk@nexuseducationalconsultancy.com">uk@nexuseducationalconsultancy.com</a></p>
+                            </div>
+                             <div class="location-detail">
+                                <h4>NEPAL</h4>
+                                <p><strong>Tel:</strong> <a href="tel:+9779851191884">+977-9851191884</a><br><strong>Email:</strong> <a href="mailto:nepal@nexuseducationalconsultancy.com">nepal@nexuseducationalconsultancy.com</a></p>
+                            </div>
+                            <div class="location-detail">
+                                <h4>AUSTRALIA</h4>
+                                <p><strong>Tel:</strong> <a href="tel:+61434060032">+61-434060032</a><br><strong>Email:</strong> <a href="mailto:aus@nexuseducationalconsultancy.com">aus@nexuseducationalconsultancy.com</a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+     <footer class="site-footer" id="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h4>United Kingdom</h4>
+                    <p><i class="fa-solid fa-user"></i>Mr. Ajay Singha (Director)</p>
+                    <a href="tel:+447912208517"><i class="fa-solid fa-phone"></i>+44-791-220-8517</a>
+                    <a href="mailto:uk@nexuseducationalconsultancy.com"><i class="fa-solid fa-envelope"></i>uk@nexuseducationalconsultancy.com</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Nepal</h4>
+                    <p><i class="fa-solid fa-location-dot"></i>Bijuli Bazar, New Baneshwor</p>
+                    <p><i class="fa-solid fa-user"></i>Ms. Sabina Karmacharya</p>
+                    <a href="tel:+9779851191884"><i class="fa-solid fa-phone"></i>+977-9851191884</a>
+                    <a href="mailto:nepal@nexuseducationalconsultancy.com"><i class="fa-solid fa-envelope"></i>nepal@nexuseducationalconsultancy.com</a>
+                </div>
+                <div class="footer-column"> 
+                    <h4>Australia</h4>
+                    <p><i class="fa-solid fa-user"></i>Mr. Suresh Shrestha</p>
+                    <a href="tel:+61434060032"><i class="fa-solid fa-phone"></i>+61-434060032</a>
+                    <a href="mailto:aus@nexuseducationalconsultancy.com"><i class="fa-solid fa-envelope"></i>aus@nexuseducationalconsultancy.com</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 Nexus Educational Consultancy. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+    // Hamburger Menu Toggle
+    const hamburger = document.querySelector(".hamburger");
+    const navMenu = document.querySelector(".nav-menu");
+    hamburger.addEventListener("click", () => { 
+        hamburger.classList.toggle("active");
+        navMenu.classList.toggle("active"); 
+    });
+
+    // Form Submission Logic
+    const contactForm = document.getElementById('contact-form');
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault(); // Stop the form from reloading the page
+        
+        const formData = new FormData(contactForm);
+        // This line was incorrect in your original file. It should get data from the form.
+        const data = {
+            firstName: formData.get('first-name'),
+            lastName: formData.get('last-name'),
+            email: formData.get('email'),
+            subject: formData.get('subject'),
+            message: formData.get('message')
+        };
+
+
+        // --- THIS IS THE KEY CHANGE ---
+        // Point to your new backend endpoint for the contact form
+        const backendEndpoint = 'http://localhost:3000/send-contact-email'; 
+
+        // Add a "sending" message to the user
+        const submitButton = contactForm.querySelector('.btn-send-dynamic');
+        submitButton.textContent = 'Sending...';
+        submitButton.disabled = true;
+
+
+        fetch(backendEndpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+        })
+        .then(response => {
+            if (!response.ok) {
+                // Get the error text from the server for better feedback
+                return response.text().then(text => { throw new Error(text) });
+            }
+            return response.text();
+        })
+        .then(result => {
+            alert('Success: ' + result);
+            contactForm.reset(); // Clear the form
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error: ' + error.message);
+        })
+        .finally(() => {
+            // Re-enable the button and reset its text
+            submitButton.textContent = 'Send Message';
+            submitButton.disabled = false;
+        });
+    });
+</script>
+</body>
+</html>

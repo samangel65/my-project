@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Online Counselling - Nexus Educational Consultancy</title>
+    <meta name="description" content="Book a free online counselling session with Nexus Educational Consultancy. Get expert advice on studying in Australia, the UK, USA, Canada, and Europe.">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- Google Fonts & Global Variables --- */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+        :root {
+            --counselling-blue: #0a4c8c;
+            --counselling-orange: #f57921;
+            --counselling-orange-hover: #e06810;
+            --text-light: #ffffff;
+            --text-dark: #1f2937;
+            --text-secondary: #4b5563;
+            --bg-light: #ffffff;
+            --bg-grey: #f9fafb;
+            --border-color: #e5e7eb;
+            --error-color: #dc2626;
+        }
+
+        /* --- Basic Reset & Body Styles --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* --- Typography for Responsiveness --- */
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+        
+        h2.section-title {
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            font-weight: 700;
+            margin-bottom: 60px;
+            position: relative;
+            color: var(--counselling-blue);
+            text-align: center;
+        }
+        
+        /* --- NEW: BACK TO HOME BUTTON --- */
+        .back-to-home {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            padding: 8px 15px;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .back-to-home i {
+            margin-right: 8px;
+        }
+        .back-to-home:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* --- Hero Section --- */
+        .counselling-hero {
+            position: relative; /* Needed for the absolute back button */
+            background-color: var(--counselling-blue);
+            color: var(--text-light);
+            padding: clamp(60px, 10vh, 100px) 0;
+            text-align: center;
+        }
+        .counselling-hero h1 span {
+            color: var(--counselling-orange);
+            font-weight: 800;
+        }
+        .counselling-hero .subtitle {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 15px auto 40px auto;
+            opacity: 0.9;
+        }
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .step-card {
+            background-color: rgba(255, 255, 255, 0.95);
+            color: var(--text-dark);
+            padding: 25px 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            border: 1px solid var(--border-color);
+        }
+        .hero-cta-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        .btn-cta {
+            background-color: var(--counselling-orange);
+            color: var(--text-light);
+            padding: 15px 40px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-cta:hover {
+            background-color: var(--counselling-orange-hover);
+            transform: translateY(-3px);
+        }
+
+        /* --- Why Choose Us Section --- */
+        .why-choose-us { padding: clamp(60px, 10vh, 100px) 0; background-color: var(--bg-light); }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 30px; }
+        .feature-box {
+            background-color: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .feature-box:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 76, 140, 0.1);
+        }
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--counselling-blue);
+            background-color: #eef5fc;
+            width: 70px;
+            height: 70px;
+            line-height: 70px;
+            border-radius: 50%;
+            margin: 0 auto 20px auto;
+        }
+        .feature-box h3 { font-size: 1.4rem; font-weight: 700; margin-bottom: 10px; }
+        .feature-box p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; }
+
+        /* --- Schedule Section --- */
+        .schedule-section { padding: clamp(60px, 10vh, 100px) 0; background-color: var(--bg-grey); }
+        .schedule-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0;
+            background: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.07);
+        }
+        
+        /* Form Input Styling */
+        .form-group { margin-bottom: 18px; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 8px; font-size: 0.9rem; color: var(--text-secondary); }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            background-color: var(--bg-grey);
+        }
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--counselling-blue);
+            box-shadow: 0 0 0 3px rgba(10, 76, 140, 0.2);
+        }
+        .schedule-info { padding: 40px; }
+        .schedule-info .logo { color: var(--counselling-blue); font-weight: 700; font-size: 1.2rem; margin-bottom: 20px; }
+        .schedule-info h3 { font-size: 1.8rem; font-weight: 600; margin-bottom: 20px; }
+        .schedule-info .detail { display: flex; align-items: center; gap: 15px; color: var(--text-secondary); margin-bottom: 25px; }
+        .schedule-info .detail i { font-size: 1.2rem; width: 20px; color: var(--counselling-blue); }
+        .schedule-info .description { color: var(--text-secondary); font-size: 0.95rem; }
+        
+        /* Calendar Widget */
+        .calendar-widget { padding: 40px; background-color: var(--bg-light); }
+        .widget-title { font-size: 1.5rem; font-weight: 600; margin-bottom: 25px; }
+        hr.form-divider { margin: 30px 0; border: none; border-top: 1px solid var(--border-color); }
+        .calendar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .calendar-header h4 { font-size: 1.2rem; font-weight: 600; }
+        .calendar-nav button { background: none; border: 1px solid var(--border-color); width: 35px; height: 35px; border-radius: 50%; cursor: pointer; transition: background-color 0.3s; }
+        .calendar-nav button:hover { background-color: var(--bg-grey); }
+        .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
+        .calendar-grid div { text-align: center; padding: 8px 4px; border-radius: 50%; font-size: 0.9rem; }
+        .day-name { font-weight: 600; color: var(--text-secondary); }
+        .day-number { cursor: pointer; transition: background-color 0.3s, color 0.3s; }
+        .day-number:not(.disabled):hover { background-color: #eef5fc; }
+        .day-number.selected { background-color: var(--counselling-blue); color: var(--text-light); font-weight: 600; }
+        .day-number.disabled { color: #ccc; cursor: not-allowed; text-decoration: line-through; }
+        .timezone { margin-top: 20px; display: flex; align-items: center; gap: 10px; font-size: 0.9rem; color: var(--text-secondary); }
+        #bookingMsg { margin-top: 20px; font-weight: 600; padding: 12px; border-radius: 8px; text-align: center; }
+        #bookingMsg.success { background-color: #eef5fc; color: var(--counselling-blue); }
+        #bookingMsg.error { background-color: #fee2e2; color: var(--error-color); }
+
+        /* --- Responsive Design --- */
+        @media (min-width: 768px) {
+            .schedule-container { grid-template-columns: 40% 60%; }
+            .schedule-info { border-right: 1px solid var(--border-color); }
+        }
+        
+        @media (max-width: 480px) {
+            .counselling-hero .subtitle { font-size: 1rem; }
+            .btn-cta { padding: 15px 25px; font-size: 1rem; }
+            .schedule-info, .calendar-widget { padding: 25px; }
+        }
+
+    </style>
+</head>
+<body>
+    
+    <main>
+        <!-- HERO SECTION -->
+        <section class="counselling-hero">
+            <!-- ADDED THIS BUTTON -->
+            <a href="index.html" class="back-to-home">
+                <i class="fa-solid fa-arrow-left"></i>
+                Back to Home
+            </a>
+            
+            <div class="container">
+                <h1><span>Unlock</span> Your Global Education Dream</h1>
+                <p class="subtitle">Get personalized virtual counselling from Nexus Educational Consultancy's expert advisors.</p>
+                
+                <div class="steps-grid">
+                    <div class="step-card">1. Find the best fit country</div>
+                    <div class="step-card">2. Discuss your course and career</div>
+                    <div class="step-card">3. Find the best suited university</div>
+                </div>
+
+                <p class="hero-cta-text">All within 5 minutes!</p>
+                <a href="#schedule" class="btn-cta">BOOK YOUR FREE ONLINE COUNSELLING NOW!</a>
+            </div>
+        </section>
+
+        <!-- WHY CHOOSE US SECTION -->
+        <section class="why-choose-us">
+            <div class="container">
+                <h2 class="section-title">Why Choose Nexus for Your Global Education?</h2>
+                <div class="features-grid">
+                    <div class="feature-box">
+                        <div class="feature-icon"><i class="fa-solid fa-calendar-check"></i></div>
+                        <h3>10+ Years</h3>
+                        <p>Proven track record in guiding students to their dream universities worldwide.</p>
+                    </div>
+                    <div class="feature-box">
+                        <div class="feature-icon"><i class="fa-solid fa-earth-americas"></i></div>
+                        <h3>5+ Countries</h3>
+                        <p>Guiding students to top institutions across global study destinations.</p>
+                    </div>
+                    <div class="feature-box">
+                        <div class="feature-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                        <h3>500+ Universities</h3>
+                        <p>Partnered with prestigious universities for diverse, high-quality options.</p>
+                    </div>
+                    <div class="feature-box">
+                        <div class="feature-icon"><i class="fa-solid fa-book-open"></i></div>
+                        <h3>30,000+ Courses</h3>
+                        <p>Access to a vast array of programs and courses to match your academic goals.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SCHEDULE SECTION -->
+        <section class="schedule-section" id="schedule">
+            <div class="container">
+                <h2 class="section-title">Schedule Your Free Session</h2>
+                <div class="schedule-container">
+                    <!-- Left Side: Information -->
+                    <div class="schedule-info">
+                        <div class="logo">Nexus Educational Consultancy</div>
+                        <h3>Book an online counselling for FREE</h3>
+                        
+                        <div class="detail"><i class="fa-regular fa-clock"></i><span>15 min</span></div>
+                        <div class="detail"><i class="fa-solid fa-video"></i><span>Web conferencing details provided upon confirmation.</span></div>
+
+                        <p class="description">
+                            Ready to study abroad? Nexus offers free personalized counselling for students aspiring to study in Australia, the UK, the USA, Canada, and Europe.
+                            <br><br>
+                            Book your free session now and let us help you kickstart your international education journey!
+                        </p>
+                    </div>
+                    
+                    <!-- Right Side: Calendar Widget / Form -->
+                    <div class="calendar-widget">
+                         <h3 class="widget-title">Your Details</h3>
+                        <div class="form-group"><label for="fullName">Full Name</label><input type="text" id="fullName" name="fullName" placeholder="e.g., Jane Doe" required></div>
+                        <div class="form-group"><label for="emailAddress">Email Address</label><input type="email" id="emailAddress" name="emailAddress" placeholder="e.g., you@example.com" required></div>
+                        <div class="form-group"><label for="phoneNumber">Contact Number</label><input type="tel" id="phoneNumber" name="phoneNumber" placeholder="e.g., +1 234 567 8900" required></div>
+                        <div class="form-group">
+                             <label for="studyDestination">Preferred Study Destination</label>
+                             <select id="studyDestination" name="studyDestination" required>
+                                 <option value="">-- Please Select --</option>
+                                 <option value="Australia">Australia</option>
+                                 <option value="UK">United Kingdom</option>
+                                 <option value="USA">United States</option>
+                                 <option value="Canada">Canada</option>
+                                 <option value="Europe">Europe</option>
+                                 <option value="Other">Other</option>
+                             </select>
+                        </div>
+                        
+                        <hr class="form-divider">
+
+                        <h3 class="widget-title">Select a Date & Time</h3>
+                        <div class="calendar-header">
+                            <h4 id="calendarMonthYear"></h4>
+                            <div class="calendar-nav">
+                                <button id="prevMonthBtn" type="button" aria-label="Previous month"><</button>
+                                <button id="nextMonthBtn" type="button" aria-label="Next month">></button>
+                            </div>
+                        </div>
+                        <div class="calendar-grid">
+                            <div class="day-name">MON</div><div class="day-name">TUE</div><div class="day-name">WED</div><div class="day-name">THU</div><div class="day-name">FRI</div><div class="day-name">SAT</div><div class="day-name">SUN</div>
+                        </div>
+                        <div class="calendar-grid" id="calendarDays"></div>
+                        
+                        <div class="form-group" style="margin-top:20px;">
+                            <label for="timeSlotSelect">Available Slots on Selected Date</label>
+                            <select id="timeSlotSelect" required><option value="">-- Select a Date First --</option></select>
+                        </div>
+                        
+                        <div class="timezone">
+                            <i class="fa-solid fa-globe"></i>
+                            <span style="margin-right: 5px;">Timezone:</span>
+                            <select id="timezoneSelect" aria-label="Select your timezone">
+                                <option value="Asia/Kathmandu">Nepal (GMT+5:45)</option>
+                                <option value="Asia/Kolkata">India (GMT+5:30)</option>
+                                <option value="UTC">UTC</option>
+                                <option value="America/New_York">Eastern Time (US/Canada)</option>
+                                <option value="Europe/London">London (GMT+0)</option>
+                                <option value="Australia/Sydney">Sydney (GMT+10)</option>
+                            </select>
+                        </div>
+                        
+                        <button id="bookBtn" class="btn-cta" style="margin-top:30px;width:100%;">Book Counselling</button>
+                        <div id="bookingMsg"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+   <script>
+    // --- All your existing calendar logic remains the same ---
+    const calendarDays = document.getElementById('calendarDays');
+    const calendarMonthYear = document.getElementById('calendarMonthYear');
+    const prevMonthBtn = document.getElementById('prevMonthBtn');
+    const nextMonthBtn = document.getElementById('nextMonthBtn');
+    const timeSlotSelect = document.getElementById('timeSlotSelect');
+    const timezoneSelect = document.getElementById('timezoneSelect');
+    const bookBtn = document.getElementById('bookBtn');
+    const bookingMsg = document.getElementById('bookingMsg');
+    
+    const fullNameInput = document.getElementById('fullName');
+    const emailInput = document.getElementById('emailAddress');
+    const phoneInput = document.getElementById('phoneNumber');
+    const destinationInput = document.getElementById('studyDestination');
+
+    const timeSlots = ["09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30"];
+    let today = new Date();
+    today.setHours(0,0,0,0);
+    let selectedDate = null;
+    let currentMonth = today.getMonth();
+    let currentYear = today.getFullYear();
+
+    function renderCalendar(month, year) {
+        calendarDays.innerHTML = '';
+        const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        calendarMonthYear.textContent = `${monthNames[month]} ${year}`;
+        const firstDayOfMonth = new Date(year, month, 1);
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+        const startDayOfWeek = (firstDayOfMonth.getDay() + 6) % 7;
+        for (let i = 0; i < startDayOfWeek; i++) {
+            calendarDays.appendChild(document.createElement('div'));
+        }
+        for (let d = 1; d <= daysInMonth; d++) {
+            const dayCell = document.createElement('div');
+            dayCell.className = 'day-number';
+            dayCell.textContent = d;
+            const thisDate = new Date(year, month, d);
+            if (thisDate < today) {
+                dayCell.classList.add('disabled');
+            } else {
+                dayCell.addEventListener('click', () => selectDate(thisDate, dayCell));
+            }
+            if (selectedDate && thisDate.getTime() === selectedDate.getTime()) {
+                dayCell.classList.add('selected');
+            }
+            calendarDays.appendChild(dayCell);
+        }
+    }
+
+    function selectDate(date, cell) {
+        selectedDate = date;
+        document.querySelectorAll('.calendar-grid .day-number').forEach(el => el.classList.remove('selected'));
+        cell.classList.add('selected');
+        populateTimeSlots();
+        clearBookingMessage();
+    }
+
+    function populateTimeSlots() {
+        timeSlotSelect.innerHTML = '<option value="">-- Select a Time --</option>';
+        if (!selectedDate) return;
+        const now = new Date();
+        const isToday = selectedDate.toDateString() === now.toDateString();
+        for (let slot of timeSlots) {
+            if (isToday) {
+                const [hours, minutes] = slot.split(':');
+                const slotTime = new Date(selectedDate);
+                slotTime.setHours(hours, minutes, 0, 0);
+                if (slotTime < now) continue;
+            }
+            let option = document.createElement('option');
+            option.value = slot;
+            option.textContent = slot;
+            timeSlotSelect.appendChild(option);
+        }
+    }
+
+    function clearBookingMessage() {
+        bookingMsg.textContent = '';
+        bookingMsg.className = '';
+    }
+
+    prevMonthBtn.addEventListener('click', () => {
+        currentMonth--;
+        if (currentMonth < 0) { currentMonth = 11; currentYear--; }
+        renderCalendar(currentMonth, currentYear);
+    });
+
+    nextMonthBtn.addEventListener('click', () => {
+        currentMonth++;
+        if (currentMonth > 11) { currentMonth = 0; currentYear++; }
+        renderCalendar(currentMonth, currentYear);
+    });
+
+    // --- MODIFIED: Booking Button Logic ---
+    bookBtn.addEventListener('click', () => {
+        clearBookingMessage();
+        // --- 1. Perform Validation ---
+        if (!fullNameInput.value.trim() || !emailInput.value || !phoneInput.value.trim() || !destinationInput.value || !selectedDate || !timeSlotSelect.value) {
+            bookingMsg.textContent = 'Please fill out all required fields and select a date/time.';
+            bookingMsg.className = 'error';
+            return;
+        }
+        
+        // --- 2. Create the data object to send ---
+        const bookingData = {
+            fullName: fullNameInput.value.trim(),
+            emailAddress: emailInput.value.trim(),
+            phoneNumber: phoneInput.value.trim(),
+            studyDestination: destinationInput.value,
+            selectedDate: selectedDate.toDateString(),
+            selectedTime: timeSlotSelect.value,
+            timezone: timezoneSelect.options[timezoneSelect.selectedIndex].text
+        };
+        
+        // --- 3. Send data to the backend using fetch API ---
+        bookingMsg.textContent = 'Booking your session...';
+        bookingMsg.className = ''; // Neutral style while sending
+
+        fetch('http://localhost:3000/book-counselling', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(bookingData),
+        })
+        .then(response => {
+            // Check if the response was successful (status 200-299)
+            if (!response.ok) {
+                // If not, get the error message from the server
+                return response.text().then(text => { throw new Error(text) });
+            }
+            return response.text();
+        })
+        .then(data => {
+            // Success! Display the success message from the server
+            bookingMsg.textContent = data;
+            bookingMsg.className = 'success';
+            // Optional: Reset the form fields
+            fullNameInput.value = '';
+            emailInput.value = '';
+            phoneInput.value = '';
+            destinationInput.value = '';
+        })
+        .catch(error => {
+            // Failure! Display the error message
+            console.error('Error:', error);
+            bookingMsg.textContent = error.message || 'An error occurred. Please try again.';
+            bookingMsg.className = 'error';
+        });
+    });
+
+    renderCalendar(currentMonth, currentYear);
+</script>
+</body>
+</html>
