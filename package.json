@@ -16,5 +16,13 @@
     "mongoose": "^8.17.0",
     "nodemailer": "^7.0.5"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samangel65/my-project.git"
+  },
+  "bugs": {
+    "url": "https://github.com/samangel65/my-project/issues"
+  },
+  "homepage": "https://github.com/samangel65/my-project#readme",
   "description": ""
 }
